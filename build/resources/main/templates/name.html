@@ -21,7 +21,9 @@ var yobi= new Array("日","月","火","水","木","金","土");
 
 document.write("西暦"+year+"年"+month+"月"+day+"日 "+yobi[week]+"曜日");
 
-
+$("a").click(function(){
+  alert("aタグ .click() のイベントだよぉ〜！");
+});
 
 </script>
 <form method="post" action="/post" name="js1">
@@ -31,6 +33,7 @@ document.write("西暦"+year+"年"+month+"月"+day+"日 "+yobi[week]+"曜日");
 
 
 
+<p th:text="'Hello, ' + ${name} + '!'" />
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
     <th> 1</th>
