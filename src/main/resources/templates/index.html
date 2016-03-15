@@ -22,15 +22,13 @@ var yobi= new Array("日","月","火","水","木","金","土");
 document.write("西暦"+year+"年"+month+"月"+day+"日 "+yobi[week]+"曜日");
 
 </script>
-<form method="post" action="/" th:action="@{/}" name="js1">
-  <input type="text" name="name" th:href="@{/}" />
+<form method="post" action="/" th:action="@{/}" name="js1" >
+  <input type="text" name="name"  />
   
   <input type="button" value="追加" onClick="AddTableRows();" />
 </form>
 
-<form id="dayFrom" method="post" th:action="@{/rest/day}">
-<input type="button" id="submit" value="click" />
-</form>
+
 
 <script type="text/javascript">
 var counter = 0;
