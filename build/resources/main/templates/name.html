@@ -25,17 +25,22 @@ $("a").click(function(){
   alert("aタグ .click() のイベントだよぉ〜！");
 });
 
+
+
+
 </script>
-<form method="post" action="/post" name="js1">
-  <p>Name：<input type="text" name="name"/>
-  <input type="submit" value="追加" onClick="AddTableRows();"/></p>
+<form method="post" action="/post" >
+  <p>Name：<input type="text" name="first_Name"/></p>
+  <p>Name：<input type="text" name="last_Name"/></p>
+  <input type="submit" value="追加" />
 </form>
 
 
 
-<p th:text="'Hello, ' + ${name} + '!'" />
+<p th:text="'Hello, ' + ${name0} + '!'" />
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
+  	<th> User</th>
     <th> 1</th>
     <th> 2</th>
     <th> 3</th>
@@ -68,7 +73,176 @@ $("a").click(function(){
     <th>30</th>
     <th>31</th>
   </tr>
-  
+  <tr >
+  <th><p th:text= "${name0}" /></th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr >
+  <th><p th:text= "${name1}" /></th>
+  <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr >
+  <th><p th:text= "${name2}" /></th>
+  <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr >
+  <th><p th:text= "${name3}" /></th>
+  <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr >
+  <th><p th:text= "${name4}" /></th>
+  <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 </table>
 
 </body>
