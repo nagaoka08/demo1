@@ -70,6 +70,7 @@ public class IndexController {
 	                (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
 	        ).forEach(customer -> log.info(customer.toString()));
 		  return "name";    
+		  
 		}
 
 	}
