@@ -1,5 +1,7 @@
 package hello;
 
+import java.beans.Statement;
+import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,12 +49,12 @@ public class IndexController {
 			System.out.println("hello");
 	        jdbc.update("insert into customers (last_Name) values (?)", last_Name);
 	    }*/
-		public String send(Model model, @RequestParam("first_Name") String first_Name,@RequestParam("last_Name") String last_Name,String name0) {
+		public String send(Model model, @RequestParam("first_Name") String first_Name,@RequestParam("last_Name") String last_Name,String name0,String n) {
 			System.out.println("hello");
-			List<Object[]> splitUpNames = Arrays.asList("Jeff Dean", "Josh Bloch", "Josh Long","test1891 test21").stream()
-	                .map(name -> name.split(" "))
-	                .collect(Collectors.toList());
-			splitUpNames.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
+			//List<Object[]> splitUpNames = Arrays.asList("Jeff Dean", "Josh Bloch", "Josh Long","test1891 test21").stream()
+	             //   .map(name -> name.split(" "))
+	             //   .collect(Collectors.toList());
+			//splitUpNames.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
 	        //jdbc.update("insert into customers (first_Name) values (?)", first_Name);
 	       // jdbc.update("insert into customers (last_Name) values (?)", last_Name);
 	        jdbc.update("INSERT INTO customers(first_name, last_name) VALUES (?,?)",new Object[]{first_Name,last_Name} );
@@ -63,12 +65,15 @@ public class IndexController {
 		  model.addAttribute("name2", "二郎");
 		  model.addAttribute("name3", "長岡");
 		  model.addAttribute("name4", "直樹");
-		  System.out.println(first_Name);
-		  log.info("Querying for customer records where first_name = first_Name:");
-	        jdbc.query(
-	                "SELECT id, first_name, last_name FROM customers WHERE first_Name = ?", new Object[] { first_Name},
+		 // System.out.println(first_Name);
+		  //log.info("Querying for customer records where first_name = first_Name:");
+	       
+	       jdbc.query(
+	                "SELECT id, first_name, last_name FROM customers",
 	                (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
 	        ).forEach(customer -> log.info(customer.toString()));
+	        
+	       
 		  return "name";    
 		  
 		}

@@ -35,7 +35,7 @@ public class Application implements CommandLineRunner {
     	
         log.info("Creating tables");
 
-        jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+        //jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
         jdbcTemplate.execute("CREATE TABLE customers(" +
                 "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
 
