@@ -41,14 +41,7 @@ public class IndexController {
 		}
 		@RequestMapping("/post")
 		
-		/*public void create(@RequestParam String first_Name) {
-			System.out.println("hello");
-	        jdbc.update("insert into customers (first_Name) values (?)", first_Name);
-	    }
-		public void create1(@RequestParam String last_Name) {
-			System.out.println("hello");
-	        jdbc.update("insert into customers (last_Name) values (?)", last_Name);
-	    }*/
+		
 		public String send(Model model, @RequestParam("first_Name") String first_Name,@RequestParam("last_Name") String last_Name,String name0,String n) {
 			System.out.println("hello");
 			//List<Object[]> splitUpNames = Arrays.asList("Jeff Dean", "Josh Bloch", "Josh Long","test1891 test21").stream()
@@ -76,6 +69,11 @@ public class IndexController {
 	       
 		  return "name";    
 		  
+		}
+		@RequestMapping("/post1")
+		public String send1(Model model, @RequestParam("niconico") String niconico ){
+			System.out.println(niconico);
+			return "name"; 
 		}
 
 	}

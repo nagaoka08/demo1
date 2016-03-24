@@ -35,6 +35,16 @@ $("a").click(function(){
   <input type="submit" value="追加" />
 </form>
 
+<form method="post" action="/post1" >
+  <p>
+<input type="radio" name="niconico" value="ニコニコ" checked="checked"/>ニコニコ
+<input type="radio" name="niconico" value="イライラ"/>イライラ
+<input type="radio" name="niconico" value="悲しい"/>悲しい
+</p>
+<p>
+<input type="submit" value="送信する"/>
+</p>
+</form>
 
 
 <p th:text="'Hello, ' + ${name0} + '!'" />
