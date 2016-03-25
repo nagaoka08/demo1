@@ -8,245 +8,25 @@
 </h1>
 <script>
 
-//今日の日付データを変数hidukeに格納
-var hiduke=new Date(); 
-
-//年・月・日・曜日を取得する
-var year = hiduke.getFullYear();
-var month = hiduke.getMonth()+1;
-var week = hiduke.getDay();
-var day = hiduke.getDate();
-
-var yobi= new Array("日","月","火","水","木","金","土");
-
-document.write("西暦"+year+"年"+month+"月"+day+"日 "+yobi[week]+"曜日");
-
-
-
 </script>
-<form method="post" action="/post" >
-  <p>Name：<input type="text" name="first_Name"/></p>
-  <p>Name：<input type="text" name="last_Name"/></p>
-  <input type="submit" value="追加" />
-</form>
 
-<form method="post" action="/post1" >
+<p th:text="${month}"></p>月
+<p th:text="${day}"></p>日
+<p th:text="${week}"></p>
+
+<form method="post" action="/post" >
+  <p>name：<input type="text" name="name1"/></p>
+  
   <p>
 <input type="radio" name="niconico" value="ニコニコ" checked="checked"/>ニコニコ
 <input type="radio" name="niconico" value="イライラ"/>イライラ
 <input type="radio" name="niconico" value="悲しい"/>悲しい
 </p>
-<p>
-<input type="submit" value="送信する"/>
-</p>
+  <input type="submit" value="追加" />
 </form>
 
-<table border="1" cellspacing="0" cellpadding="4" id="table1">
-  <tr id="a">
-  	<th> User</th>
-    <th> 1</th>
-    <th> 2</th>
-    <th> 3</th>
-    <th> 4</th>
-    <th> 5</th>
-    <th> 6</th>
-    <th> 7</th>
-    <th> 8</th>
-    <th> 9</th>
-    <th>10</th>
-    <th>11</th>
-    <th>12</th>
-    <th>13</th>
-    <th>14</th>
-    <th>15</th>
-    <th>16</th>
-    <th>17</th>
-    <th>18</th>
-    <th>19</th>
-    <th>20</th>
-    <th>21</th>
-    <th>22</th>
-    <th>23</th>
-    <th>24</th>
-    <th>25</th>
-    <th>26</th>
-    <th>27</th>
-    <th>28</th>
-    <th>29</th>
-    <th>30</th>
-    <th>31</th>
-  </tr>
-  <tr >
-  <th><p th:text= "${first_Name}" /></th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr >
-  <th><p th:text= "${name1}" /></th>
-  <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr >
-  <th><p th:text= "${name2}" /></th>
-  <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr >
-  <th><p th:text= "${name3}" /></th>
-  <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr >
-  <th><p th:text= "${name4}" /></th>
-  <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th> </th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-</table>
+
+
 </body>
 </html>
 
