@@ -41,6 +41,11 @@ public class IndexController {
 		@RequestMapping("/")
 		
 		public String index(Model model) {
+			
+				 
+			
+			
+			
 			String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
                     "木曜日", "金曜日", "土曜日"};
 
@@ -86,12 +91,13 @@ public class IndexController {
 			  model.addAttribute("day", day);
 			  model.addAttribute("week", week_name[week]);
 			  
+			  int[] day1 =new int[31];
 	        jdbc.update("INSERT INTO user(name1) VALUES (?)",new Object[]{name1} );
 	        jdbc.execute("SELECT id, name1 FROM user");
 	        
 		  model.addAttribute("name1", name1);
 		  
-		  model.addAttribute("name2", "二郎");
+		  model.addAttribute("day1", "day1");
 		  model.addAttribute("name3", "nn");
 		  model.addAttribute("name4", "naga");
 		 

@@ -23,6 +23,7 @@ public class Application implements CommandLineRunner {
         SpringApplication.run(Application.class, args);
         System.out.println("処理終了");
         
+        
     }
     
     @Autowired
@@ -37,7 +38,7 @@ public class Application implements CommandLineRunner {
     	
         log.info("Creating tables");
 
-        jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+        //jdbcTemplate.execute("IF EXISTS");
         jdbcTemplate.execute("CREATE TABLE user(" +
                 "id SERIAL, name1 VARCHAR(255))");
         
