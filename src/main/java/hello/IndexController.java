@@ -64,8 +64,7 @@ public class IndexController {
 			
 		}
 		@RequestMapping("/post")
-		public String send(Model model, @RequestParam("name1") String name1, @RequestParam("niconico") String niconico, String name0,String n,
-				@RequestParam("day") String day,@RequestParam("nikoniko") String nikoniko,@RequestParam("id") String id) {
+		public String send(Model model, @RequestParam("name1") String name1	) {
 			//カレンダー取得
 			String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
                     "木曜日", "金曜日", "土曜日"};
@@ -105,23 +104,20 @@ public class IndexController {
 	       	  model.addAttribute("user", l);
 	       
 	       //ニコニコデータベース
-	       System.out.println(niconico);
+	      
 	       
-	       jdbc.update("INSERT INTO niconico(niconico) VALUES (?)",new Object[]{niconico} );
-	        jdbc.execute("niconico FROM niconico");
+	       
 	       
 	       
 		  return "name";    
 		  
 		}
-		/*@RequestMapping("/post1")
-		public String send1(Model model, @RequestParam("niconico") String niconico ){
-			System.out.println(niconico);
-			jdbc.query(
-	                "SELECT id, first_name, last_name FROM customers",
-	                (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
-	        ).forEach(customer -> log.info(customer.toString()));
+		@RequestMapping("/post1")
+		public String send1(Model model, @RequestParam("niconico1") String niconico1 ){
+			System.out.println(niconico1);
+			 jdbc.update("INSERT INTO niconico(niconico) VALUES (?)",new Object[]{niconico1} );
+		        jdbc.execute("niconico FROM niconico");
 			return "name"; 
-		}*/
+		}
 
 	}

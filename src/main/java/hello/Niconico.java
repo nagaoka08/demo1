@@ -1,13 +1,14 @@
 package hello;
 
 public class Niconico {
-	private long id,day;
-    private String niconico;
+	private long id;
+	//private long id,day;
+    private String niconico1;
 
-    public Niconico(long id,long day, String niconico) {
-        this.id = id;
-        this.id = day;
-        this.niconico = niconico;
+    public Niconico(long id,long day, String niconico1) {
+      this.id = id;
+        //this.id = day;
+        this.niconico1 = niconico1;
         
     }
 
@@ -19,8 +20,8 @@ public class Niconico {
     public String toString() {
     	
         return String.format(
-                "%s","%s","%s",
-                id,day,niconico);
+                "%s",
+                niconico1);
         
     }
 

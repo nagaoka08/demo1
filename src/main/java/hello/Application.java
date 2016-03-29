@@ -43,7 +43,7 @@ public class Application implements CommandLineRunner {
                 "id SERIAL, name1 VARCHAR(255))");
         
         jdbcTemplate.execute("CREATE TABLE niconico(" +
-                "id INT, day INT,niconico VARCHAR(255))");
+                "id SERIAL,niconico VARCHAR(255))");
         
         
 
@@ -51,13 +51,10 @@ public class Application implements CommandLineRunner {
         /*List<Object[]> splitUpNames = Arrays.asList("John Woo", "Jeff Dean", "Josh Bloch", "Josh Long","test1891 test21").stream()
                 .map(name -> name.split(" "))
                 .collect(Collectors.toList());
-
         // Use a Java 8 stream to print out each tuple of the list
         splitUpNames.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
-
         // Uses JdbcTemplate's batchUpdate operation to bulk load data
         jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
-
         log.info("Querying for customer records where first_name = 'test1':");
         jdbcTemplate.query(
                 "SELECT id, first_name, last_name FROM customers WHERE first_name = ?", new Object[] { "test1" },
