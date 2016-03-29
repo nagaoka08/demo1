@@ -43,7 +43,7 @@ public class Application implements CommandLineRunner {
                 "id SERIAL, name1 VARCHAR(255))");
         
         jdbcTemplate.execute("CREATE TABLE niconico(" +
-                "id SERIAL,name2 VARCHAR(255),niconico1 VARCHAR(255))");
+                "id SERIAL,day INT,name2 VARCHAR(255),niconico1 VARCHAR(255))");
         
         
 

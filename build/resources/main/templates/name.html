@@ -32,9 +32,7 @@ function insertRow(id) {
 
 </script>
 
-<p th:text="${month}"></p>月
-<p th:text="${day1}"></p>日
-<p th:text="${week}"></p>
+<p th:text="${day}"></p>
 <form method="post" action="/post" >
   <p>name：<input type="text" name="name1"/>
  <input type="submit" value="追加"  /></p>
@@ -108,9 +106,7 @@ function insertRow(id) {
 </tr>
 </table>
 
-<p>
-<span th:text="${niconi}"/>
-</p>
+
 
 </body>
 </html>
