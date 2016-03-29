@@ -114,9 +114,22 @@ public class IndexController {
 		}
 		@RequestMapping("/post1")
 		public String send1(Model model, @RequestParam("niconico1") String niconico1 ){
+			List<User> l = jdbc.query(
+	                "SELECT id, name1 FROM user",
+	                (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name1"))
+	        );
+	               
+	       	  model.addAttribute("user", l);
 			System.out.println(niconico1);
-			 jdbc.update("INSERT INTO niconico(niconico) VALUES (?)",new Object[]{niconico1} );
-		        jdbc.execute("niconico FROM niconico");
+			 jdbc.update("INSERT INTO niconico(niconico1) VALUES (?)",new Object[]{niconico1} );
+		        jdbc.execute("SELECT id,niconico1 FROM niconico");
+		        
+		        List<Niconico> h = jdbc.query(
+		                "SELECT id, niconico1 FROM niconico",
+		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getString("niconico1"))
+		        );
+		               
+		       	  model.addAttribute("niconi", h);
 			return "name"; 
 		}
 

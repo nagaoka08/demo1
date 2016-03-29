@@ -99,6 +99,12 @@ function insertRow(id) {
   </tr>
   
 </table>
+<table>
+<tr th:each="prod:${niconi}">
+<td th:text="${prod}"/>
+
+</tr>
+</table>
 
 </body>
 </html>

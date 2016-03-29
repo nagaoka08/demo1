@@ -5,7 +5,7 @@ public class Niconico {
 	//private long id,day;
     private String niconico1;
 
-    public Niconico(long id,long day, String niconico1) {
+    public Niconico(long id,String niconico1) {
       this.id = id;
         //this.id = day;
         this.niconico1 = niconico1;
