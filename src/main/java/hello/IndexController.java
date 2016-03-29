@@ -48,7 +48,7 @@ public class IndexController {
 			
 			int year = calendar.get(Calendar.YEAR);
 			int month = calendar.get(Calendar.MONTH) + 1;
-			int day = calendar.get(Calendar.DATE);
+			int day1 = calendar.get(Calendar.DATE);
 			int hour = calendar.get(Calendar.HOUR_OF_DAY);
 			int minute = calendar.get(Calendar.MINUTE);
 			int second = calendar.get(Calendar.SECOND);
@@ -58,7 +58,7 @@ public class IndexController {
 			
 			model.addAttribute("year", year);
 			  model.addAttribute("month", month);
-			  model.addAttribute("day", day);
+			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
 			return"name0";
 			
@@ -113,7 +113,7 @@ public class IndexController {
 		  
 		}
 		@RequestMapping("/post1")
-		public String send1(Model model, @RequestParam("niconico1") String niconico1 ){
+		public String send1(Model model, @RequestParam("niconico1") String niconico1,@RequestParam("name2") String name2 ){
 			List<User> l = jdbc.query(
 	                "SELECT id, name1 FROM user",
 	                (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name1"))
@@ -121,12 +121,13 @@ public class IndexController {
 	               
 	       	  model.addAttribute("user", l);
 			System.out.println(niconico1);
-			 jdbc.update("INSERT INTO niconico(niconico1) VALUES (?)",new Object[]{niconico1} );
+			System.out.println(name2);
+			 jdbc.update("INSERT INTO niconico(name2,niconico1) VALUES (?,?)",new Object[]{name2,niconico1} );
 		        jdbc.execute("SELECT id,niconico1 FROM niconico");
 		        
 		        List<Niconico> h = jdbc.query(
-		                "SELECT id, niconico1 FROM niconico",
-		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getString("niconico1"))
+		                "SELECT id, name2,niconico1 FROM niconico",
+		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getString("name2"),rs.getString("niconico1"))
 		        );
 		               
 		       	  model.addAttribute("niconi", h);

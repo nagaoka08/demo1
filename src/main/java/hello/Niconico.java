@@ -3,11 +3,11 @@ package hello;
 public class Niconico {
 	private long id;
 	//private long id,day;
-    private String niconico1;
+    private String niconico1,name2;
 
-    public Niconico(long id,String niconico1) {
+    public Niconico(long id,String niconico1,String name2) {
       this.id = id;
-        //this.id = day;
+        this.name2 = name2;
         this.niconico1 = niconico1;
         
     }
@@ -20,8 +20,8 @@ public class Niconico {
     public String toString() {
     	
         return String.format(
-                "%s",
-                niconico1);
+                "%s user=%s",
+                name2,niconico1);
         
     }
 
