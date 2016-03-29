@@ -33,11 +33,6 @@ public class IndexController {
 		JdbcTemplate jdbc;
 	    NamedParameterJdbcTemplate jdbcTemplate; // (1)
 
-		
-		@PostConstruct public void createTable(){
-			
-		}
-	
 		@RequestMapping("/")
 		
 		public String index(Model model) {
@@ -69,8 +64,9 @@ public class IndexController {
 			
 		}
 		@RequestMapping("/post")
-		public String send(Model model, @RequestParam("name1") String name1, @RequestParam("niconico") String niconico, String name0,String n) {
-			
+		public String send(Model model, @RequestParam("name1") String name1, @RequestParam("niconico") String niconico, String name0,String n,
+				@RequestParam("day") String day,@RequestParam("nikoniko") String nikoniko,@RequestParam("id") String id) {
+			//カレンダー取得
 			String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
                     "木曜日", "金曜日", "土曜日"};
 
@@ -78,7 +74,7 @@ public class IndexController {
 			
 			int year = calendar.get(Calendar.YEAR);//西暦取得
 			int month = calendar.get(Calendar.MONTH) + 1;//月取得
-			int day = calendar.get(Calendar.DATE);//　日取得
+			int day1 = calendar.get(Calendar.DATE);//　日取得
 			int hour = calendar.get(Calendar.HOUR_OF_DAY); //時間取得
 			int minute = calendar.get(Calendar.MINUTE);// 分取得
 			int second = calendar.get(Calendar.SECOND);// 秒取得
@@ -86,31 +82,34 @@ public class IndexController {
 			
 			int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
 			
-			model.addAttribute("year", year);
+			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
-			  model.addAttribute("day", day);
+			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
 			  
-			  int[] day1 =new int[31];
+			  int[] day2 =new int[31];
+			  //ユーザデータベース処理
 	        jdbc.update("INSERT INTO user(name1) VALUES (?)",new Object[]{name1} );
 	        jdbc.execute("SELECT id, name1 FROM user");
 	        
-		  model.addAttribute("name1", name1);
-		  
-		  model.addAttribute("day1", "day1");
-		  model.addAttribute("name3", "nn");
-		  model.addAttribute("name4", "naga");
-		 
-		  System.out.println(niconico);	       
+			  model.addAttribute("name1", name1);
+			  model.addAttribute("day1", "day1");
+			  model.addAttribute("name3", "nn");
+			  model.addAttribute("name4", "naga");
+			  	      
 	       List<User> l = jdbc.query(
 	                "SELECT id, name1 FROM user",
 	                (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name1"))
 	        );
-	       //.forEach(customer -> log.info(customer.toString()));
-	        
-	       model.addAttribute("user", l);
+	               
+	       	  model.addAttribute("user", l);
 	       
-	    
+	       //ニコニコデータベース
+	       System.out.println(niconico);
+	       
+	       jdbc.update("INSERT INTO niconico(niconico) VALUES (?)",new Object[]{niconico} );
+	        jdbc.execute("niconico FROM niconico");
+	       
 	       
 		  return "name";    
 		  
