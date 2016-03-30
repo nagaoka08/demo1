@@ -21,8 +21,8 @@ public class Niconico {
     public String toString() {
     	
         return String.format(
-                "%s user=%s %s日",
-                name2,niconico1,day);
+                "%s user=%s ",
+                name2,niconico1);
         
     }
 
