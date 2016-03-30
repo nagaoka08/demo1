@@ -32,10 +32,10 @@ function insertRow(id) {
 
 </script>
 
-<p th:text="${Day}"></p>
+<p th:text="${day}"></p>
 <form method="post" action="/post" >
   <p>name：<input type="text" name="name1"/>
- <input type="submit" value="追加"  /></p>
+ <input type="submit" value="ユーザ追加"  /></p>
 </form>
  <form method="post" action="/post1" >
  
@@ -64,7 +64,7 @@ function insertRow(id) {
 	   
 	   <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}"  >
 	   		<p th:if="${i == day1 }">
-		   		<p th:each="prod1:${niconi}" th:text="${prod1}">
+		   		<p th:each="prod1:${niconi1}" th:text="${prod1}">
 		   			
 		   		</p>
 			</p>
@@ -76,7 +76,7 @@ function insertRow(id) {
 </table>
 
 <table>
-	<tr th:each="prod:${niconi}">
+	<tr th:each="prod:${niconi1}">
 		<td th:text="${prod}"/>
 		
 	</tr>

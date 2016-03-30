@@ -82,6 +82,8 @@ public class IndexController {
 			
 			int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
 			String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
+			
+			
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
@@ -90,15 +92,13 @@ public class IndexController {
 			  model.addAttribute("day", Day);
 			  
 			  
+			
+			
+			
 			  //ユーザデータベース処理
 	        jdbc.update("INSERT INTO user(name1) VALUES (?)",new Object[]{name1} );
 	        jdbc.execute("SELECT id, name1 FROM user");
-	        
-			  model.addAttribute("name1", name1);
-			  model.addAttribute("day1", "day1");
-			  model.addAttribute("name3", "nn");
-			  model.addAttribute("name4", "naga");
-			  	      
+			    	      
 	       List<User> l = jdbc.query(
 	                "SELECT id, name1 FROM user",
 	                (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name1"))
@@ -107,13 +107,17 @@ public class IndexController {
 	       	  model.addAttribute("user", l);
 	       
 	       //ニコニコデータベース
-	       	List<Niconico> h = jdbc.query(
-	                "SELECT id, name2,niconico1,day FROM niconico",
-	                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getLong("day"),rs.getString("name2"),rs.getString("niconico1"))
-	        );
-	               
-	       	  model.addAttribute("niconi", h);
-	       
+	       	  
+	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
+	        jdbc.execute("SELECT id,niconico1 FROM niconico");
+	        
+	       	 List<Niconico> h = jdbc.query(
+		                "SELECT id, name2,niconico1,day FROM niconico",
+		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getLong("day"),rs.getString("name2"),rs.getString("niconico1"))
+		        );
+		               
+		       	  model.addAttribute("niconi1", h);
+		       	  
 	       
 	       
 	       
@@ -138,7 +142,10 @@ public class IndexController {
 			int week = calendar.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
 			
 			int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
+			
 			String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
+			
+			
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
@@ -146,7 +153,7 @@ public class IndexController {
 			  
 			  model.addAttribute("day", Day);
 			  
-			  int[] day2 =new int[31];
+			  
 			
 			int day = calendar.get(Calendar.DATE);//　日取得
 			
@@ -156,9 +163,8 @@ public class IndexController {
 	        );
 	               
 	       	  model.addAttribute("user", l);
-			//System.out.println(niconico1);
-			System.out.println(name2);
-			 jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
+			
+	       	  	jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
 		        jdbc.execute("SELECT id,niconico1 FROM niconico");
 		        
 		        List<Niconico> h = jdbc.query(
@@ -166,7 +172,7 @@ public class IndexController {
 		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getLong("day"),rs.getString("name2"),rs.getString("niconico1"))
 		        );
 		               
-		       	  model.addAttribute("niconi", h);
+		       	  model.addAttribute("niconi1", h);
 		       	  
 		       	
 			return "name"; 
