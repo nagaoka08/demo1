@@ -60,13 +60,19 @@ function insertRow(id) {
     <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}" th:text="${i}+ ''"></th>
   </tr>
   <tr th:each="prod:${user}">
-  
-  
-   <td th:text="${prod}"/>
-   <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}" ></th>
+   <td th:text="${prod}"></td>
+   
+   <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}" >
+   		<p th:each="prod:${niconi}" th:text="${prod}">
+	
+
+		</p>
+	</th>
+   
   </tr>
   
 </table>
+
 <table>
 <tr th:each="prod:${niconi}">
 <td th:text="${prod}"/>
