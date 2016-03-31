@@ -28,30 +28,40 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 @Controller
 public class IndexController {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
+	
+		
 		@Autowired
     
 		JdbcTemplate jdbc;
 	    NamedParameterJdbcTemplate jdbcTemplate; // (1)
+	    
+	    
+	  //カレンダー取得
+		String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
+                "木曜日", "金曜日", "土曜日"};
+
+		Calendar calendar = Calendar.getInstance();
+		
+		int year = calendar.get(Calendar.YEAR);//西暦取得
+		int month = calendar.get(Calendar.MONTH) + 1;//月取得
+		int day1 = calendar.get(Calendar.DATE);//　日取得
+		int hour = calendar.get(Calendar.HOUR_OF_DAY); //時間取得
+		int minute = calendar.get(Calendar.MINUTE);// 分取得
+		int second = calendar.get(Calendar.SECOND);// 秒取得
+		int week = calendar.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
+		
+		int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
+		
+		String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
+		
+		
+		 
+		  
 
 		@RequestMapping("/")
 		
 		public String index(Model model) {
-			//カレンダー取得
-			String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
-                    "木曜日", "金曜日", "土曜日"};
-
-			Calendar calendar = Calendar.getInstance();
-			
-			int year = calendar.get(Calendar.YEAR);//西暦取得
-			int month = calendar.get(Calendar.MONTH) + 1;//月取得
-			int day1 = calendar.get(Calendar.DATE);//　日取得
-			int hour = calendar.get(Calendar.HOUR_OF_DAY); //時間取得
-			int minute = calendar.get(Calendar.MINUTE);// 分取得
-			int second = calendar.get(Calendar.SECOND);// 秒取得
-			int week = calendar.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
-			
-			int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
-			String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
+			//カレンダー
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
@@ -59,123 +69,156 @@ public class IndexController {
 			  
 			  model.addAttribute("day", Day);
 			  
-			  int[] day2 =new int[31];
 			  
-			return"name0";
+			  
+			  List<Account> account = jdbc.query(
+		                "SELECT id,user FROM account",
+		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+		        );
+		               
+		       	  model.addAttribute("account", account);
+		       	List<Feelings> feelings = jdbc.query(
+		                "SELECT id,niconico FROM feelings ",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+		        );
+		        model.addAttribute("feelings", feelings);
+		       	  
+			return"name";
 			
 		}
-		@RequestMapping("/post")
-		public String send(Model model, @RequestParam("name1") String name1	) {
-			//カレンダー取得
-			String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
-                    "木曜日", "金曜日", "土曜日"};
-
-			Calendar calendar = Calendar.getInstance();
+		@RequestMapping("/account")
+		public String send(Model model, @RequestParam("name") String name	) {
 			
-			int year = calendar.get(Calendar.YEAR);//西暦取得
-			int month = calendar.get(Calendar.MONTH) + 1;//月取得
-			int day1 = calendar.get(Calendar.DATE);//　日取得
-			int hour = calendar.get(Calendar.HOUR_OF_DAY); //時間取得
-			int minute = calendar.get(Calendar.MINUTE);// 分取得
-			int second = calendar.get(Calendar.SECOND);// 秒取得
-			int week = calendar.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
-			
-			int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
-			String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
-			
-			
+			//カレンダー
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
 			  
 			  model.addAttribute("day", Day);
+			  int r =0;
+			  r = (int)(Math.random() * 1000) + 1;
 			  
-			  
-			
-			
 			
 			  //ユーザデータベース処理
-	        jdbc.update("INSERT INTO user(name1) VALUES (?)",new Object[]{name1} );
-	        jdbc.execute("SELECT id, name1 FROM user");
+	        jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
+	       
 			    	      
-	       List<User> l = jdbc.query(
-	                "SELECT id, name1 FROM user",
-	                (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name1"))
+	        List<Account> account = jdbc.query(
+	                "SELECT id,user FROM account",
+	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
 	        );
 	               
-	       	  model.addAttribute("user", l);
+	       	  model.addAttribute("account", account);
+	               
+	       	  
 	       
 	       //ニコニコデータベース
 	       	  
 	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
-	        jdbc.execute("SELECT id,niconico1 FROM niconico");
-	        
-	       	 List<Niconico> h = jdbc.query(
-		                "SELECT id, name2,niconico1,day FROM niconico",
-		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getLong("day"),rs.getString("name2"),rs.getString("niconico1"))
-		        );
-		               
-		       	  model.addAttribute("niconi1", h);
-		       	  
+	       
+	       	List<Feelings> feelings = jdbc.query(
+	                "SELECT id,niconico FROM feelings ",
+	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+	        );
+	        model.addAttribute("feelings", feelings);
+	       	  
 	       
 	       
 	       
 		  return "name";    
 		  
 		}
-		@RequestMapping("/post1")
-		public String send1(Model model, @RequestParam("niconico1") String niconico1,@RequestParam("name2") String name2 ){
+		@RequestMapping("/niconico")
+		public String send1(Model model, @RequestParam("niconico1") String niconico1,@RequestParam("id") String id,@RequestParam("id") int nicoid ){
 			
-			//カレンダー取得
-			String[] week_name = {"日曜日", "月曜日", "火曜日", "水曜日", 
-                    "木曜日", "金曜日", "土曜日"};
-
-			Calendar calendar = Calendar.getInstance();
+			//カレンダー
+			 model.addAttribute("year", year);
+			  model.addAttribute("month", month);
+			  model.addAttribute("day1", day1);
+			  model.addAttribute("week", week_name[week]);
+			  
+			  model.addAttribute("day", Day);
 			
-			int year = calendar.get(Calendar.YEAR);//西暦取得
-			int month = calendar.get(Calendar.MONTH) + 1;//月取得
-			int day1 = calendar.get(Calendar.DATE);//　日取得
-			int hour = calendar.get(Calendar.HOUR_OF_DAY); //時間取得
-			int minute = calendar.get(Calendar.MINUTE);// 分取得
-			int second = calendar.get(Calendar.SECOND);// 秒取得
-			int week = calendar.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
+			List<Account> account = jdbc.query(
+	                "SELECT id,user FROM account",
+	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+	        );
+	               
+	       	  model.addAttribute("account", account);
 			
-			int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
-			
-			String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
-			
-			
+	       	int number = jdbc.queryForObject("select id from account where id=?",
+	       			Integer.class, id);
+//	       	int niconumber = jdbc.queryForObject("select id from feelings where id=?",
+//	       			Integer.class, id);
+//       	
+	       	
+	       	
+	       	  if(number == nicoid){
+	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
+	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
+//	       		String feeling= jdbc.queryForObject("select niconico from feelings where id=?",
+//		       			String.class, id);
+//	       		System.out.println(feeling);
+		       	
+	       	  	
+	       	  }
+	       	 
+	       	  else {
+	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
+	       		//jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
+	       	  }
+		        
+	       	 List<Feelings> feelings = jdbc.query(
+		                "SELECT id,niconico FROM feelings  ",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+		        );
+		        model.addAttribute("feelings", feelings);
+		       	  
+		       	
+			return "name"; 
+		}
+		@RequestMapping("/delete")
+		public String delete(Model model, @RequestParam("id") String id	) {
+			//カレンダー
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
 			  
 			  model.addAttribute("day", Day);
-			  
+			  int r =0;
+			  r = (int)(Math.random() * 1000) + 1;
 			  
 			
-			int day = calendar.get(Calendar.DATE);//　日取得
-			
-			List<User> l = jdbc.query(
-	                "SELECT id, name1 FROM user",
-	                (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name1"))
+			  //ユーザデータベース処理
+	        //jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
+	        jdbc.update("DELETE  FROM account where id=?",  id);
+			    	      
+	        List<Account> account = jdbc.query(
+	                "SELECT id,user FROM account",
+	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
 	        );
 	               
-	       	  model.addAttribute("user", l);
-			
-	       	  	jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
-		        jdbc.execute("SELECT id,niconico1 FROM niconico");
-		        
-		        List<Niconico> h = jdbc.query(
-		                "SELECT id, name2,niconico1,day FROM niconico",
-		                (rs, rowNum) -> new Niconico(rs.getLong("id"), rs.getLong("day"),rs.getString("name2"),rs.getString("niconico1"))
-		        );
-		               
-		       	  model.addAttribute("niconi1", h);
-		       	  
-		       	
-			return "name"; 
+	       	  model.addAttribute("account", account);
+	               
+	       	  
+	       
+	       //ニコニコデータベース
+	       	  
+	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
+	       
+	       	List<Feelings> feelings = jdbc.query(
+	                "SELECT id,niconico FROM feelings ",
+	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+	        );
+	        model.addAttribute("feelings", feelings);
+	       	  
+	       
+	       
+	       
+		  return "name";    
+		  
 		}
 
 	}
