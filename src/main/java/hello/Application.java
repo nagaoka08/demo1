@@ -39,11 +39,11 @@ public class Application implements CommandLineRunner {
         log.info("Creating tables");
         //ユーザテーブル作成
         //jdbcTemplate.execute("IF EXISTS");
-        jdbcTemplate.execute("CREATE TABLE user(" +
-                "id SERIAL, name1 VARCHAR(255))");
-        
-        jdbcTemplate.execute("CREATE TABLE niconico(" +
-                "id SERIAL,day INT,name2 VARCHAR(255),niconico1 VARCHAR(255))");
+//        jdbcTemplate.execute("CREATE TABLE user(" +
+//                "id SERIAL, name1 VARCHAR(255))");
+//        
+//        jdbcTemplate.execute("CREATE TABLE niconico(" +
+//                "id SERIAL,day INT,niconico1 VARCHAR(255),name2 VARCHAR(255))");
         
         
 
