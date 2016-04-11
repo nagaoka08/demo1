@@ -8,7 +8,7 @@
 </h1>
 <script>
 function insertRow(id) {
-    
+
 }
 
 
@@ -20,36 +20,47 @@ function insertRow(id) {
  <input type="submit" value="ユーザ追加"  /></p>
 </form>
  <form method="post" action="/niconico" >
- 
+
 		<p>
 		<select name="id" >
 		<option th:each="account:${account}" th:value="${account.id}">
 		<span th:text="${account.user}"/></option>
 		</select>
-		
+
 		<input type="radio" name="niconico1" value="ニコニコ" checked="checked"/>ニコニコ
 		<input type="radio" name="niconico1" value="イライラ"/>イライラ
 		<input type="radio" name="niconico1" value="悲しい"/>悲しい
 		<input type="radio" name="niconico1" value="眠い"/>眠い
-		
+
   <input type="submit" value="登録"  /></p>
 </form>
 
  <form method="post" action="/delete" >
- 
+
 		<p>
 		<select name="id" >
 		<option th:each="account:${account}" th:value="${account.id}">
 		<span th:text="${account.user}"/></option>
 		</select>
-		
-		
-		
+
+
+
   <input type="submit" value="削除"  /></p>
+</form>
+<form method="post" action="/deletenico" >
+
+		<p>
+		<select name="niconico" >
+		<option th:each="feelings:${feelings}" th:value="${feelings.niconico}">
+		<span th:text="${feelings.niconico}"/></option>
+		</select>
+
+
+
+  <input type="submit" value="削除ニコ"  /></p>
 </form>
 
 
-
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
   	<th> User</th>
@@ -57,44 +68,22 @@ function insertRow(id) {
   </tr>
   <tr th:each="account:${account}">
 	   <td  th:text="${account.user}"><p th:text="${account.id}" /></td>
-	   
+
 	   <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}"  >
 	   		<p th:if="${i == day1 }">
-	   			
+
 				   		<p th:each="feelings:${feelings}" th:text="${feelings.niconico}">
-				   			
+
 				   		</p>
-				  
+
 			</p>
-	
+
 		</th>
-   
+
   </tr>
-  
+
 </table>
 
-<table border="1" cellspacing="0" cellpadding="4" id="table1">
-  <tr id="a">
-  	<th> User</th>
-    <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}" th:text="${i}+ ''"></th>
-  </tr>
-  <tr th:each="account:${account}">
-	   <td  th:text="${account.user}"><p th:text="${account.id}" /></td>
-	   
-	   <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}"  >
-	   		<p th:if="${i == day1 }">
-	   			
-				   		<p th:each="feelings:${feelings}" th:text="${feelings.niconico}">
-				   			
-				   		</p>
-				  
-			</p>
-	
-		</th>
-   
-  </tr>
-  
-</table>
 
 </body>
 </html>
