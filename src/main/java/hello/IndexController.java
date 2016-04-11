@@ -49,6 +49,7 @@ public class IndexController {
 
 		@RequestMapping("/")
 
+
 		public String index(Model model) {
 			//カレンダー
 			  model.addAttribute("year", year);
