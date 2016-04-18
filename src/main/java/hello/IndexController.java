@@ -226,48 +226,49 @@ public class IndexController {
 
 		  return "name";
 
-		}@RequestMapping("/deletenico")
-		public String deletenico(Model model, @RequestParam("niconico") String niconico	) {
-			//カレンダー
-			  model.addAttribute("year", year);
-			  model.addAttribute("month", month);
-			  model.addAttribute("day1", day1);
-			  model.addAttribute("week", week_name[week]);
-
-			  model.addAttribute("day", Day);
-			  int r =0;
-			  r = (int)(Math.random() * 1000) + 1;
-
-
-			  //ユーザデータベース処理
-	        //jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
-	        jdbc.update("DELETE  FROM feelings where niconico=?",  niconico);
-
-	        List<Account> account = jdbc.query(
-	                "SELECT id,user FROM account",
-	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
-	        );
-
-	       	  model.addAttribute("account", account);
-
-
-
-	       //ニコニコデータベース
-
-	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
-
-	       	List<Feelings> feelings = jdbc.query(
-	                "SELECT id,niconico FROM feelings ",
-	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
-	        );
-	        model.addAttribute("feelings", feelings);
-
-
-
-
-		  return "name";
-
 		}
-
+//		@RequestMapping("/deletenico")
+//		public String deletenico(Model model, @RequestParam("niconico") String niconico	) {
+//			//カレンダー
+//			  model.addAttribute("year", year);
+//			  model.addAttribute("month", month);
+//			  model.addAttribute("day1", day1);
+//			  model.addAttribute("week", week_name[week]);
+//
+//			  model.addAttribute("day", Day);
+//			  int r =0;
+//			  r = (int)(Math.random() * 1000) + 1;
+//
+//
+//			  //ユーザデータベース処理
+//	        //jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
+//	        jdbc.update("DELETE  FROM feelings where niconico=?",  niconico);
+//
+//	        List<Account> account = jdbc.query(
+//	                "SELECT id,user FROM account",
+//	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+//	        );
+//
+//	       	  model.addAttribute("account", account);
+//
+//
+//
+//	       //ニコニコデータベース
+//
+//	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
+//
+//	       	List<Feelings> feelings = jdbc.query(
+//	                "SELECT id,niconico FROM feelings ",
+//	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+//	        );
+//	        model.addAttribute("feelings", feelings);
+//
+//
+//
+//
+//		  return "name";
+//
+//		}
+//
 
 	}

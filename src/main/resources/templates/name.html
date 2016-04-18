@@ -47,18 +47,7 @@ function insertRow(id) {
 
   <input type="submit" value="削除"  /></p>
 </form>
-<form method="post" action="/deletenico" >
 
-		<p>
-		<select name="niconico" >
-		<option th:each="feelings:${feelings}" th:value="${feelings.niconico}">
-		<span th:text="${feelings.niconico}"/></option>
-		</select>
-
-
-
-  <input type="submit" value="削除ニコ"  /></p>
-</form>
 
 
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
@@ -71,10 +60,16 @@ function insertRow(id) {
 
 	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
 	   		<p th:if="${i == day1 }">
+	   			<p th:each="account:${account}">
+			   		<p th:each="feelings:${feelings}">
+			   			<p th:if="${ feelings.id== account.id }">
 
-				   		<p th:each="feelings:${feelings}" th:text="${feelings.niconico}">
+						   		<p  th:text="${feelings.niconico}">
 
-				   		</p>
+						   		</p>
+						  </p>
+					</p>
+				</p>
 
 			</p>
 
