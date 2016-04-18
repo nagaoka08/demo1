@@ -42,6 +42,8 @@ public class IndexController {
 		int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
 
 		String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
+		int nowMonth = calendar.get(Calendar.MONTH) + 1;
+		int lastDay = calendar.getActualMaximum(Calendar.DATE);
 
 
 
@@ -58,6 +60,9 @@ public class IndexController {
 			  model.addAttribute("week", week_name[week]);
 
 			  model.addAttribute("day", Day);
+
+			  model.addAttribute("nowMonth", nowMonth);
+			  model.addAttribute("lastDay",lastDay);
 
 
 
@@ -84,10 +89,12 @@ public class IndexController {
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
+			  model.addAttribute("lastDay",lastDay);
+
 
 			  model.addAttribute("day", Day);
 			  int r =0;
-			  r = (int)(Math.random() * 1000) + 1;
+			  r = (int)(Math.random() * 10000) + 1;
 
 
 			  //ユーザデータベース処理
@@ -126,6 +133,8 @@ public class IndexController {
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
+			  model.addAttribute("lastDay",lastDay);
+
 
 			  model.addAttribute("day", Day);
 
@@ -136,16 +145,23 @@ public class IndexController {
 
 	       	  model.addAttribute("account", account);
 
-	       	int number = jdbc.queryForObject("select id from account where id=?",
-	       			Integer.class, id);
+	       	String number = jdbc.queryForObject("select id from account where id=?",
+	       			String.class, id);
+//	       	String number = jdbc.queryForObject("select id from feelings where id=?",
+//	       			String.class, id);
 //	       	int niconumber = jdbc.queryForObject("select id from feelings where id=?",
 //	       			Integer.class, id);
-//
+//	       	String dayyy = jdbc.queryForObject("select id from feelings where month=? and day=?",
+//	       			String.class, month,day1,id);
 
+	       	int count = jdbc.queryForObject("select count(*) from feelings where id=?",Integer.class,id);
 
-	       	  if(number == nicoid){
-	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
-	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
+//	       	System.out.println(dayyy);
+	       	System.out.println(nicoid);
+
+	       	  if(count == 0){
+	       		jdbc.update("INSERT INTO feelings(id,niconico,month,day) VALUES (?,?,?,?)",new Object[]{id,niconico1,month,day1} );
+//	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
 //	       		String feeling= jdbc.queryForObject("select niconico from feelings where id=?",
 //		       			String.class, id);
 //	       		System.out.println(feeling);
@@ -154,8 +170,8 @@ public class IndexController {
 	       	  }
 
 	       	  else {
-	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
-	       		//jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
+//	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
+	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
 	       	  }
 
 	       	 List<Feelings> feelings = jdbc.query(
@@ -174,6 +190,8 @@ public class IndexController {
 			  model.addAttribute("month", month);
 			  model.addAttribute("day1", day1);
 			  model.addAttribute("week", week_name[week]);
+			  model.addAttribute("lastDay",lastDay);
+
 
 			  model.addAttribute("day", Day);
 			  int r =0;

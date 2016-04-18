@@ -64,12 +64,12 @@ function insertRow(id) {
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
   	<th> User</th>
-    <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}" th:text="${i}+ ''"></th>
+    <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}" th:text="${i} "></th>
   </tr>
   <tr th:each="account:${account}">
 	   <td  th:text="${account.user}"><p th:text="${account.id}" /></td>
 
-	   <th th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}"  >
+	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
 	   		<p th:if="${i == day1 }">
 
 				   		<p th:each="feelings:${feelings}" th:text="${feelings.niconico}">
