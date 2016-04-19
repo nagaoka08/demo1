@@ -1,1 +1,2 @@
-web: java -jar build/libs/YOUR_APP_NAME-VERSION.jar --server.port=$PORT
+
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/gs-serving-web-content-0.1.0.jar.original
