@@ -41,10 +41,7 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
 }
-task copyJetty (type : Copy) {
-    into "$buildDir/jetty"
-    from configurations.providedCompile
-}
+
 task stage {
    dependsOn build
  }
