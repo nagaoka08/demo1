@@ -1,1 +1,1 @@
-web: ./build/install/app/bin/app
+web: java -jar build/libs/YOUR_APP_NAME-VERSION.jar --server.port=$PORT
