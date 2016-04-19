@@ -45,5 +45,6 @@ task copyJetty (type : Copy) {
     into "$buildDir/jetty"
     from configurations.providedCompile
 }
-task stage (dependsOn : ['clean', 'copyJetty'])
-stage.finalizedBy build
+task stage {
+   dependsOn build
+ }
