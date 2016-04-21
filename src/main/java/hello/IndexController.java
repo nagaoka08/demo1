@@ -41,7 +41,7 @@ public class IndexController {
 
 		int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
 
-		String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日
+		String Day = month+"月"+day1+"日"+week_name[week]; //月日曜日表示
 		int nowMonth = calendar.get(Calendar.MONTH) + 1;
 		int lastDay = calendar.getActualMaximum(Calendar.DATE);
 
