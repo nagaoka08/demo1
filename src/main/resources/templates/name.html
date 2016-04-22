@@ -1,5 +1,7 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
-<html>
 <body>
 <title>
 ニコニコカレンダー
@@ -25,7 +27,7 @@ function insertRow(id) {
 		<p>
 		<select name="id" >
 		<option th:each="account:${account}" th:value="${account.id}">
-		<span th:text="${account.username}"/>
+		<p th:text="${account.username}"></p>
 		</option>
 		</select>
 
@@ -42,7 +44,7 @@ function insertRow(id) {
 		<p>
 		<select name="id" >
 		<option th:each="account:${account}" th:value="${account.id}">
-		<span th:text="${account.username}"/></option>
+		<p th:text="${account.username}"></p></option>
 		</select>
 
 

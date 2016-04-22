@@ -127,7 +127,7 @@ public class IndexController {
 		}
 		@RequestMapping("/niconico")
 		public String send1(Model model, @RequestParam("niconico1") String niconico1,@RequestParam("id") String id,@RequestParam("id") int nicoid ){
-
+			System.out.println(id);
 			//カレンダー
 			 model.addAttribute("year", year);
 			  model.addAttribute("month", month);
@@ -145,22 +145,16 @@ public class IndexController {
 
 	       	  model.addAttribute("account", account);
 
-	       	String number = jdbc.queryForObject("select id from account where id=?",
-	       			String.class, id);
-//	       	String number = jdbc.queryForObject("select id from feelings where id=?",
-//	       			String.class, id);
-//	       	int niconumber = jdbc.queryForObject("select id from feelings where id=?",
-//	       			Integer.class, id);
-//	       	String dayyy = jdbc.queryForObject("select id from feelings where month=? and day=?",
-//	       			String.class, month,day1,id);
+	       	int id1 = Integer.parseInt(id);
 
-	       	int count = jdbc.queryForObject("select count(*) from feelings where id=?",Integer.class,id);
+	       	int count =jdbc.queryForObject("select count(*) from feelings where id=?",Integer.class,id1);
 
-//	       	System.out.println(dayyy);
-	       	System.out.println(nicoid);
+	       	System.out.println(count);
+	       	System.out.println(id);
+
 
 	       	  if(count == 0){
-	       		jdbc.update("INSERT INTO feelings(id,niconico,month,day) VALUES (?,?,?,?)",new Object[]{id,niconico1,month,day1} );
+	       		jdbc.update("INSERT INTO feelings(id,month,day,niconico) VALUES (?,?,?,?)",new Object[]{id1,month,day1,niconico1});
 //	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
 //	       		String feeling= jdbc.queryForObject("select niconico from feelings where id=?",
 //		       			String.class, id);
@@ -171,7 +165,7 @@ public class IndexController {
 
 	       	  else {
 //	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
-	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
+	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id1);
 	       	  }
 
 	       	 List<Feelings> feelings = jdbc.query(
@@ -197,10 +191,10 @@ public class IndexController {
 			  int r =0;
 			  r = (int)(Math.random() * 1000) + 1;
 
-
+			  int id1 = Integer.parseInt(id);
 			  //ユーザデータベース処理
 	        //jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
-	        jdbc.update("DELETE  FROM account where id=?",  id);
+	        jdbc.update("DELETE  FROM account where id=?",  id1);
 
 	        List<Account> account = jdbc.query(
 	                "SELECT id,username FROM account",
