@@ -195,7 +195,7 @@ public class IndexController {
 			  //ユーザデータベース処理
 	        //jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
 	        jdbc.update("DELETE  FROM account where id=?",  id1);
-
+	        jdbc.update("DELETE  FROM feelings where id=?",  id1);
 	        List<Account> account = jdbc.query(
 	                "SELECT id,username FROM account",
 	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))

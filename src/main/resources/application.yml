@@ -5,10 +5,14 @@ spring:
         cache: false
     datasource:
         driverClassName: org.postgresql.Driver
-        url: https://git.heroku.com/n-n-nico-calender.git
+        url:  postgres://mchilqfhaemquu:th3ZJJznCl8g_z3HMKwqcymHND@ec2-54-235-97-23.compute-1.amazonaws.com:5432/dbb126qnqddd3m
+#        url: https://git.heroku.com/n-n-nico-calender.git
 #        url: jdbc:postgresql://localhost:5432/postgres
-        username: postgres
-        password: shadow0207
+
+#        username: mchilqfhaemquu
+#        password: th3ZJJznCl8g_z3HMKwqcymHND
+#        username: postgres
+#        password: shadow0207
 #      driverClassName: org.h2.Driver
 #              url: jdbc:h2:file:./db/test
 #              username: sa
