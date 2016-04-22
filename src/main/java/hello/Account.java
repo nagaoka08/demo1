@@ -2,12 +2,12 @@ package hello;
 
 public class Account {
 	private int id;
-    private String user;
-    
-    public Account( int id,String user) {
+    private String username;
+
+    public Account( int id,String username) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.username = username;
 	}
 	public int getId() {
 		return id;
@@ -15,13 +15,13 @@ public class Account {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUser() {
-		return user;
+	public String getusername() {
+		return username;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setusername(String username) {
+		this.username = username;
 	}
-    
-    
+
+
 }
 

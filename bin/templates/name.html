@@ -1,3 +1,4 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html>
 <body>
 <title>
@@ -24,7 +25,8 @@ function insertRow(id) {
 		<p>
 		<select name="id" >
 		<option th:each="account:${account}" th:value="${account.id}">
-		<span th:text="${account.user}"/></option>
+		<span th:text="${account.username}"/>
+		</option>
 		</select>
 
 		<input type="radio" name="niconico1" value="ニコニコ" checked="checked"/>ニコニコ
@@ -40,7 +42,7 @@ function insertRow(id) {
 		<p>
 		<select name="id" >
 		<option th:each="account:${account}" th:value="${account.id}">
-		<span th:text="${account.user}"/></option>
+		<span th:text="${account.username}"/></option>
 		</select>
 
 
@@ -52,11 +54,11 @@ function insertRow(id) {
 
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
-  	<th> User</th>
+  	<th> username</th>
     <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}" th:text="${i} "></th>
   </tr>
   <tr th:each="account:${account}">
-	   <td  th:text="${account.user}"><p th:text="${account.id}" /></td>
+	   <td  th:text="${account.username}"><p th:text="${account.id}" /></td>
 
 	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
 	   		<p th:if="${i == day1 }">

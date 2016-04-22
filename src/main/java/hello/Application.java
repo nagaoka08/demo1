@@ -33,13 +33,13 @@ public class Application implements CommandLineRunner {
 
         log.info("Creating tables");
         //ユーザテーブル作成
-          jdbcTemplate.execute("DROP TABLE account IF EXISTS");
-        jdbcTemplate.execute("CREATE TABLE account(" +
-                "id INT, user VARCHAR(255))");
-       jdbcTemplate.execute("DROP TABLE feelings IF EXISTS");
-        jdbcTemplate.execute("CREATE TABLE feelings(" +
-                "id INT,month int,day INT,niconico VARCHAR(255))");
-
+//          jdbcTemplate.execute("DROP TABLE account IF EXISTS");
+//        jdbcTemplate.execute("CREATE TABLE account(" +
+//                "id INT, user VARCHAR(255))");
+//       jdbcTemplate.execute("DROP TABLE feelings IF EXISTS");
+//        jdbcTemplate.execute("CREATE TABLE feelings(" +
+//                "id INT,month int,day INT,niconico VARCHAR(255))");
+//
 
 
         // Split up the array of whole names into an array of first/last names

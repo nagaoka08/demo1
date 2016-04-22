@@ -67,8 +67,8 @@ public class IndexController {
 
 
 			  List<Account> account = jdbc.query(
-		                "SELECT id,user FROM account",
-		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+		                "SELECT id,username FROM account",
+		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
 		        );
 
 		       	  model.addAttribute("account", account);
@@ -98,12 +98,12 @@ public class IndexController {
 
 
 			  //ユーザデータベース処理
-	        jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
+	        jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
 
 
 	        List<Account> account = jdbc.query(
-	                "SELECT id,user FROM account",
-	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+	                "SELECT id,username FROM account",
+	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
 	        );
 
 	       	  model.addAttribute("account", account);
@@ -139,8 +139,8 @@ public class IndexController {
 			  model.addAttribute("day", Day);
 
 			List<Account> account = jdbc.query(
-	                "SELECT id,user FROM account",
-	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+	                "SELECT id,username FROM account",
+	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
 	        );
 
 	       	  model.addAttribute("account", account);
@@ -199,12 +199,12 @@ public class IndexController {
 
 
 			  //ユーザデータベース処理
-	        //jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
+	        //jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
 	        jdbc.update("DELETE  FROM account where id=?",  id);
 
 	        List<Account> account = jdbc.query(
-	                "SELECT id,user FROM account",
-	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+	                "SELECT id,username FROM account",
+	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
 	        );
 
 	       	  model.addAttribute("account", account);
@@ -241,12 +241,12 @@ public class IndexController {
 //
 //
 //			  //ユーザデータベース処理
-//	        //jdbc.update("INSERT INTO account(id,user) VALUES (?,?)",new Object[]{r,name} );
+//	        //jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
 //	        jdbc.update("DELETE  FROM feelings where niconico=?",  niconico);
 //
 //	        List<Account> account = jdbc.query(
-//	                "SELECT id,user FROM account",
-//	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("user"))
+//	                "SELECT id,username FROM account",
+//	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
 //	        );
 //
 //	       	  model.addAttribute("account", account);
