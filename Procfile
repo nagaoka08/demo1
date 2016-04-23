@@ -1,2 +1,1 @@
-
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/operation_board-0.0.1-SNAPSHOT.jar
+web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${@ec2-54-243-224-151.compute-1.amazonaws.com:5432/dcercsd241nddr} -Ddb.default.driver=org.postgresql.Driver
