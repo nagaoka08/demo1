@@ -102,7 +102,8 @@ public class IndexController {
 
 
 	        List<Account> account = jdbc.query(
-	                "SELECT id,username FROM account",
+	                ""
+	                + "",
 	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
 	        );
 
