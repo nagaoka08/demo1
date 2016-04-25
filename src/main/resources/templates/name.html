@@ -79,7 +79,7 @@ function insertRow(id) {
 	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
 	   <p th:each="feelings:${feelings}">
 
-	   		<p th:if="${year == feelings.yaer}">
+	   		<p th:if="${year == feelings.year}">
 
 	   			<p th:if="${month == feelings.month}">
 
