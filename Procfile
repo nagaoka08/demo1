@@ -1,1 +1,1 @@
-web2: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${@ec2-54-243-224-151.compute-1.amazonaws.com:5432/dcercsd241nddr} -Ddb.default.driver=org.postgresql.Driver
+: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${@ec2-54-243-224-151.compute-1.amazonaws.com:5432/dcercsd241nddr} -Ddb.default.driver=org.postgresql.Driver
