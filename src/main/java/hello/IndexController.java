@@ -198,7 +198,7 @@ public class IndexController {
 
 	       //ニコニコデータベース
 
-	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
+
 
 	       	List<Feelings> feelings = jdbc.query(
 	                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
