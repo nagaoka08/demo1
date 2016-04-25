@@ -212,6 +212,46 @@ public class IndexController {
 		  return "name";
 
 		}
+
+		@RequestMapping(value = "/previous")
+		public String getPrevious(Model model, @RequestParam("previous") String previous) {
+			String[] prev = previous.split("/");
+			int prevYear = Integer.parseInt(prev[0]);
+			int prevMonth = Integer.parseInt(prev[1]);
+			if (prevMonth == 0) {
+				prevYear -= 1;
+				prevMonth = 12;
+			}
+			model.addAttribute("dispYear", prevYear);
+			model.addAttribute("dispMonth", prevMonth);
+
+			Calendar calendar = Calendar.getInstance();
+
+			// 現在選択中のさくせんがあればそのnumberを送る.
+			int nowYear = calendar.get(Calendar.YEAR);
+			int nowMonth = calendar.get(Calendar.MONTH) + 1;
+			int nowDay = calendar.get(Calendar.DATE);
+			int count = jdbc.queryForObject(
+					"select count(*) from operation_history_tbl where year=? and month=? and day=?", Integer.class, nowYear,
+					nowMonth, nowDay);
+			if (count == 1) {
+				String content = jdbc.queryForObject(
+						"select content from operation_history_tbl where year=? and month=? and day=?", String.class,
+						nowYear, nowMonth, nowDay);
+				int number = jdbc.queryForObject("select number from operation_list where content=?", Integer.class,
+						content);
+				model.addAttribute("number", number);
+			}
+
+			calendar.set(prevYear, prevMonth - 1, 1);
+			int lastDay = calendar.getActualMaximum(Calendar.DATE);
+			model.addAttribute("lastDay", lastDay);
+
+			// operation_history_tblから過去の履歴を取得する.
+
+
+			return "name";
+		}
 		@RequestMapping(value = "/next")
 		public String getNext(Model model, @RequestParam("next") String next) {
 			String[] nex = next.split("/");
@@ -249,7 +289,7 @@ public class IndexController {
 
 
 
-			return "today";
+			return "name";
 		}
 //
 
