@@ -150,7 +150,7 @@ public class IndexController {
 
 
 	       	  if(count == 0){
-	       		jdbc.update("INSERT INTO feelings(id,month,day,niconico) VALUES (?,?,?,?)",new Object[]{id1,month,day1,niconico1});
+	       		jdbc.update("INSERT INTO feelings(id,year,month,day,niconico) VALUES (?,?,?,?,?)",new Object[]{id1,year,month,day1,niconico1});
 
 
 	       	  }
@@ -212,48 +212,45 @@ public class IndexController {
 		  return "name";
 
 		}
-//		@RequestMapping("/deletenico")
-//		public String deletenico(Model model, @RequestParam("niconico") String niconico	) {
-//			//カレンダー
-//			  model.addAttribute("year", year);
-//			  model.addAttribute("month", month);
-//			  model.addAttribute("day1", day1);
-//			  model.addAttribute("week", week_name[week]);
-//
-//			  model.addAttribute("day", Day);
-//			  int r =0;
-//			  r = (int)(Math.random() * 1000) + 1;
-//
-//
-//			  //ユーザデータベース処理
-//	        //jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
-//	        jdbc.update("DELETE  FROM feelings where niconico=?",  niconico);
-//
-//	        List<Account> account = jdbc.query(
-//	                "SELECT id,username FROM account",
-//	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
-//	        );
-//
-//	       	  model.addAttribute("account", account);
-//
-//
-//
-//	       //ニコニコデータベース
-//
-//	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
-//
-//	       	List<Feelings> feelings = jdbc.query(
-//	                "SELECT id,niconico FROM feelings ",
-//	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
-//	        );
-//	        model.addAttribute("feelings", feelings);
-//
-//
-//
-//
-//		  return "name";
-//
-//		}
+		@RequestMapping(value = "/next")
+		public String getNext(Model model, @RequestParam("next") String next) {
+			String[] nex = next.split("/");
+
+			int nexYear = Integer.parseInt(nex[0]);
+			int nexMonth = Integer.parseInt(nex[1]);
+			if (nexMonth == 13) {
+				nexYear += 1;
+				nexMonth = 1;
+			}
+			model.addAttribute("dispYear", nexYear);
+			model.addAttribute("dispMonth", nexMonth);
+
+			Calendar calendar = Calendar.getInstance();
+
+			// 現在選択中のさくせんがあればそのnumberを送る.
+			int nowYear = calendar.get(Calendar.YEAR);
+			int nowMonth = calendar.get(Calendar.MONTH) + 1;
+			int nowDay = calendar.get(Calendar.DATE);
+			int count = jdbc.queryForObject(
+					"select count(*) from feelings where  month=? and day=?", Integer.class, nowYear,
+					nowMonth, nowDay);
+			if (count == 1) {
+				String content = jdbc.queryForObject(
+						"select content from operation_history_tbl where year=? and month=? and day=?", String.class,
+						nowYear, nowMonth, nowDay);
+				int number = jdbc.queryForObject("select number from operation_list where content=?", Integer.class,
+						content);
+				model.addAttribute("number", number);
+			}
+
+			calendar.set(nexYear, nexMonth - 1, 1);
+			int lastDay = calendar.getActualMaximum(Calendar.DATE);
+			model.addAttribute("lastDay", lastDay);
+
+
+
+			return "today";
+		}
 //
 
 	}
