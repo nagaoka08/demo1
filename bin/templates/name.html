@@ -77,17 +77,27 @@ function insertRow(id) {
 	   <td  th:text="${account.username}"><p th:text="${account.id}" /></td>
 
 	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
-	   		<p th:if="${i == day1 }">
-	   			<p th:each="account:${account}">
-			   		<p th:each="feelings:${feelings}">
-			   			<p th:if="${ feelings.id== account.id }">
+	   <p th:each="feelings:${feelings}">
 
-						   		<p  th:text="${feelings.niconico}">
+	   		<p th:if="${year == feelings.yaer}">
 
-						   		</p>
-						  </p>
+	   			<p th:if="${month == feelings.month}">
+
+	   				<p th:if="${i == day1 }">
+
+	   					<p th:each="account:${account}">
+
+			   				<p th:if="${ feelings.id== account.id }">
+
+							   		<p  th:text="${feelings.niconico}">
+							   		</p>
+
+						   	</p>
+						 </p>
 					</p>
 				</p>
+			</p>
+		</p>
 
 			</p>
 
