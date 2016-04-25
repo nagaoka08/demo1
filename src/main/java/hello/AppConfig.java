@@ -12,9 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import net.sf.log4jdbc.Log4jdbcProxyDataSource;
+
 @Configuration
 public class AppConfig {
-	@Autowired
+    @Autowired
     DataSourceProperties properties;
     DataSource dataSource;
 
@@ -50,5 +52,4 @@ public class AppConfig {
     DataSource dataSource() {
         return new Log4jdbcProxyDataSource(this.dataSource);
     }
-
 }
