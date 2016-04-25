@@ -55,7 +55,7 @@ function insertRow(id) {
 <div class="month">
 		<div class="lastmonth">
 			<form method="get" action="/previous">
-				<input type="hidden" name="previous" th:value="${dispYear}+'/'+(${dispMonth}-1)" />
+				<input type="hidden" name="previous" th:value="${year}+'/'+(${month}-1)" />
 				<input type="submit" th:value="＜" />
 			</form>
 		</div>

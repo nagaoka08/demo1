@@ -222,8 +222,8 @@ public class IndexController {
 				prevYear -= 1;
 				prevMonth = 12;
 			}
-			model.addAttribute("dispYear", prevYear);
-			model.addAttribute("dispMonth", prevMonth);
+			model.addAttribute("year", prevYear);
+			model.addAttribute("month", prevMonth);
 
 			Calendar calendar = Calendar.getInstance();
 
@@ -232,7 +232,7 @@ public class IndexController {
 			int nowMonth = calendar.get(Calendar.MONTH) + 1;
 			int nowDay = calendar.get(Calendar.DATE);
 			int count = jdbc.queryForObject(
-					"select count(*) from operation_history_tbl where year=? and month=? and day=?", Integer.class, nowYear,
+					"select count(*) from feelings where year=? and month=? and day=?", Integer.class, nowYear,
 					nowMonth, nowDay);
 			if (count == 1) {
 				String content = jdbc.queryForObject(
@@ -262,8 +262,8 @@ public class IndexController {
 				nexYear += 1;
 				nexMonth = 1;
 			}
-			model.addAttribute("dispYear", nexYear);
-			model.addAttribute("dispMonth", nexMonth);
+			model.addAttribute("year", nexYear);
+			model.addAttribute("month", nexMonth);
 
 			Calendar calendar = Calendar.getInstance();
 
@@ -272,13 +272,13 @@ public class IndexController {
 			int nowMonth = calendar.get(Calendar.MONTH) + 1;
 			int nowDay = calendar.get(Calendar.DATE);
 			int count = jdbc.queryForObject(
-					"select count(*) from feelings where  month=? and day=?", Integer.class, nowYear,
+					"select count(*) from feelings where year=? and  month=? and day=?", Integer.class, nowYear,
 					nowMonth, nowDay);
 			if (count == 1) {
 				String content = jdbc.queryForObject(
-						"select content from operation_history_tbl where year=? and month=? and day=?", String.class,
+						"select content from feelings where year=? and month=? and day=?", String.class,
 						nowYear, nowMonth, nowDay);
-				int number = jdbc.queryForObject("select number from operation_list where content=?", Integer.class,
+				int number = jdbc.queryForObject("select number from feelings where content=?", Integer.class,
 						content);
 				model.addAttribute("number", number);
 			}
