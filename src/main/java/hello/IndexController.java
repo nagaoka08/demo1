@@ -254,8 +254,8 @@ public class IndexController {
 
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
-		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), year, month
+		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? order by day",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), prevYear, prevMonth
 		        );
 		        model.addAttribute("feelings", feelings);
 
@@ -305,8 +305,8 @@ public class IndexController {
 
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
-		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), year, month
+		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? order by day",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), nexYear, nexMonth
 		        );
 		        model.addAttribute("feelings", feelings);
 
