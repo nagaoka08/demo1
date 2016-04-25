@@ -64,7 +64,7 @@ function insertRow(id) {
   <tr th:each="account:${account}">
 	   <td  th:text="${account.username}"><p th:text="${account.id}" /></td>
 
-	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
+	   <th  onclick="alert('tr click')"><th onclick="alert('th click')" th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
 	   <p th:each="feelings:${feelings}">
 
 	   		<p th:if="${year == feelings.year}">
