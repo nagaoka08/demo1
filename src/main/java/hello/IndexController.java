@@ -73,8 +73,8 @@ public class IndexController {
 
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
-		                "SELECT id,niconico FROM feelings where year=? and month=? order by day ",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+		                "SELECT id,niconico,day FROM feelings where year=? and month=? order by day ",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico")), year, month
 		        );
 		        model.addAttribute("feelings", feelings);
 
