@@ -73,7 +73,7 @@ public class IndexController {
 
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
-		                "SELECT id,niconico FROM feelings ",
+		                "SELECT id,niconico FROM feelings where year=? and month=? order by day ",
 		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
 		        );
 		        model.addAttribute("feelings", feelings);
@@ -157,11 +157,11 @@ public class IndexController {
 
 	       	  else {
 
-	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id1);
+	       		jdbc.update("update feelings set niconico=? where id=? and ysar=? and mouth=? and day=?  ", niconico1, id1,year,month,day1);
 	       	  }
 
 	       	 List<Feelings> feelings = jdbc.query(
-		                "SELECT id,niconico FROM feelings  ",
+		                "SELECT id,niconico FROM feelings ",
 		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
 		        );
 		        model.addAttribute("feelings", feelings);
@@ -304,8 +304,8 @@ public class IndexController {
 		        );
 
 		       	  model.addAttribute("account", account);
-		       	List<Feelings> feelings = jdbc.query(
-		                "SELECT id,niconico FROM feelings ",
+		    List<Feelings> feelings = jdbc.query(
+		                "SELECT * FROM feelings ",
 		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
 		        );
 		        model.addAttribute("feelings", feelings);
