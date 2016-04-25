@@ -1,2 +1,2 @@
-web1: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${@ec2-23-21-167-174.compute-1.amazonaws.com:5432/d90jfae484s31} -Ddb.default.driver=org.postgresql.Driver
 
+web: java -Dserver.port=5432 $JAVA_OPTS C:\Users\n_nagaoka\Documents\pleiades\workspace\demo1\build\libs
