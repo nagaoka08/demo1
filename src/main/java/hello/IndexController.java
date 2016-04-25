@@ -102,19 +102,19 @@ public class IndexController {
 
 
 
-
-	       	List<Feelings> feelings = jdbc.query(
-	                "SELECT id,niconico FROM feelings ",
-	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
-	        );
-	        model.addAttribute("feelings", feelings);
-	        List<Account> account = jdbc.query(
-	                ""
-	                + "",
-	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
-	        );
-
-	       	  model.addAttribute("account", account);
+//
+//	       	List<Feelings> feelings = jdbc.query(
+//	                "SELECT id,niconico FROM feelings ",
+//	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+//	        );
+//	        model.addAttribute("feelings", feelings);
+//	        List<Account> account = jdbc.query(
+//	                ""
+//	                + "",
+//	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
+//	        );
+//
+//	       	  model.addAttribute("account", account);
 
 
 
