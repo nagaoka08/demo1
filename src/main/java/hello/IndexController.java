@@ -84,24 +84,6 @@ public class IndexController {
 		@RequestMapping("/account")
 		public String send(Model model, @RequestParam("name") String name	) {
 
-			//カレンダー
-			  model.addAttribute("year", year);
-			  model.addAttribute("month", month);
-			  model.addAttribute("day1", day1);
-			  model.addAttribute("week", week_name[week]);
-			  model.addAttribute("lastDay",lastDay);
-
-
-			  model.addAttribute("day", Day);
-			  List<Account> account = jdbc.query(
-		                ""
-		                + "",
-		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
-		        );
-
-		       	  model.addAttribute("account", account);
-
-
 
 			  int r =0;
 			  r = (int)(Math.random() * 10000) + 1;
@@ -113,13 +95,29 @@ public class IndexController {
 
 
 
-	       	List<Feelings> feelings = jdbc.query(
-	                "SELECT id,niconico FROM feelings ",
-	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
-	        );
-	        model.addAttribute("feelings", feelings);
+	        model.addAttribute("year", year);
+			  model.addAttribute("month", month);
+			  model.addAttribute("day1", day1);
+			  model.addAttribute("week", week_name[week]);
+
+			  model.addAttribute("day", Day);
+
+			  model.addAttribute("nowMonth", nowMonth);
+			  model.addAttribute("lastDay",lastDay);
 
 
+
+			  List<Account> account = jdbc.query(
+		                "SELECT id,username FROM account",
+		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
+		        );
+
+		       	  model.addAttribute("account", account);
+		       	List<Feelings> feelings = jdbc.query(
+		                "SELECT id,niconico FROM feelings ",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+		        );
+		        model.addAttribute("feelings", feelings);
 
 		  return "name";
 
