@@ -17,7 +17,7 @@ apply plugin: 'spring-boot'
 //apply plugin: 'application'
 
 jar {
-	baseName = 'operation_board'
+	baseName = 'niconico'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -35,6 +35,7 @@ dependencies {
 
 	compile("org.springframework.boot:spring-boot-starter-jdbc")
 	//compile("org.springframework:spring-jdbc")
+	compile("postgresql:postgresql:9.1-901-1.jdbc4")
 	compile("com.h2database:h2")
 	compile( "org.postgresql:postgresql:9.4.1208.jre7")
 

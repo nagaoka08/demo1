@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar build/libs/gs-serving-web-content-0.1.0.jar --server.port=$PORT --spring.profiles.active=heroku
+web: java $JAVA_OPTS -jar build/libs/niconico-0.0.1-SNAPSHOT.jar --server.port=$PORT --spring.profiles.active=heroku
