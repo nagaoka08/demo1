@@ -56,7 +56,7 @@ function insertRow(id) {
 		</div>
 	</div>
 
-<table border="1" cellspacing="0" cellpadding="4" id="table1" th:each="account:${account}"onclick="alert(${account.username})">
+<table border="1" cellspacing="0" cellpadding="4" id="table1" >
   <tr id="a">
   	<th> username</th>
     <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}" th:text="${i} "></th>
