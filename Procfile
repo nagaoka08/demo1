@@ -1,2 +1,1 @@
-web1: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.url=${ec2-23-21-167-174.compute-1.amazonaws.com:5432/d90jfae484s3} -Ddb.default.driver=org.postgresql.Driver
-
+web: java $JAVA_OPTS -jar build/libs/gs-serving-web-content-0.1.0.jar --server.port=$PORT --spring.profiles.active=heroku
