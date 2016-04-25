@@ -144,7 +144,7 @@ public class IndexController {
 
 	       	int id1 = Integer.parseInt(id);
 
-	       	int count =jdbc.queryForObject("select count(*) from feelings where id=? and ysar=? and mouth=? and day=?",Integer.class,id1,year,month,day1);
+	       	int count =jdbc.queryForObject("select count(*) from feelings where id=? and year=? and mouth=? and day=?",Integer.class,id1,year,month,day1);
 
 
 
