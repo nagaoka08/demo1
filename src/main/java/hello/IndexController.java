@@ -93,6 +93,16 @@ public class IndexController {
 
 
 			  model.addAttribute("day", Day);
+			  List<Account> account = jdbc.query(
+		                ""
+		                + "",
+		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
+		        );
+
+		       	  model.addAttribute("account", account);
+
+
+
 			  int r =0;
 			  r = (int)(Math.random() * 10000) + 1;
 
@@ -108,13 +118,6 @@ public class IndexController {
 	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
 	        );
 	        model.addAttribute("feelings", feelings);
-	        List<Account> account = jdbc.query(
-	                ""
-	                + "",
-	                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
-	        );
-
-	       	  model.addAttribute("account", account);
 
 
 
