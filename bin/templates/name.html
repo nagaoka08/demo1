@@ -58,7 +58,7 @@ function insertRow(id) {
 
 <table border="1" cellspacing="0" cellpadding="4" id="table1" >
 <p th:each="account:${account}">
-	<p th:each="feelings:${feelings}">
+
   <tr id="a">
   	<th> username</th>
     <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}" th:text="${i} "></th>
@@ -86,12 +86,12 @@ function insertRow(id) {
 					</p>
 				</p>
 			</p>
+		</p>
 
 
 		</th>
 
   </tr>
-  </p>
   </p>
 
 </table>
