@@ -98,9 +98,16 @@ public class IndexController {
 
 
 			  //ユーザデータベース処理
-	        jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
+	        jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name});
 
 
+
+
+	       	List<Feelings> feelings = jdbc.query(
+	                "SELECT id,niconico FROM feelings ",
+	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+	        );
+	        model.addAttribute("feelings", feelings);
 	        List<Account> account = jdbc.query(
 	                ""
 	                + "",
@@ -108,18 +115,6 @@ public class IndexController {
 	        );
 
 	       	  model.addAttribute("account", account);
-
-
-
-	       //ニコニコデータベース
-
-	       	//jdbc.update("INSERT INTO niconico(name2,niconico1,day) VALUES (?,?,?)",new Object[]{name2,niconico1,day} );
-
-	       	List<Feelings> feelings = jdbc.query(
-	                "SELECT id,niconico FROM feelings ",
-	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
-	        );
-	        model.addAttribute("feelings", feelings);
 
 
 
@@ -150,22 +145,17 @@ public class IndexController {
 
 	       	int count =jdbc.queryForObject("select count(*) from feelings where id=?",Integer.class,id1);
 
-	       	System.out.println(count);
-	       	System.out.println(id);
+
 
 
 	       	  if(count == 0){
 	       		jdbc.update("INSERT INTO feelings(id,month,day,niconico) VALUES (?,?,?,?)",new Object[]{id1,month,day1,niconico1});
-//	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id);
-//	       		String feeling= jdbc.queryForObject("select niconico from feelings where id=?",
-//		       			String.class, id);
-//	       		System.out.println(feeling);
 
 
 	       	  }
 
 	       	  else {
-//	       		jdbc.update("INSERT INTO feelings(id,niconico,day) VALUES (?,?,?)",new Object[]{id,niconico1,day1} );
+
 	       		jdbc.update("update feelings set niconico=? where id=?", niconico1, id1);
 	       	  }
 
@@ -193,8 +183,7 @@ public class IndexController {
 			  r = (int)(Math.random() * 1000) + 1;
 
 			  int id1 = Integer.parseInt(id);
-			  //ユーザデータベース処理
-	        //jdbc.update("INSERT INTO account(id,username) VALUES (?,?)",new Object[]{r,name} );
+
 	        jdbc.update("DELETE  FROM account where id=?",  id1);
 	        jdbc.update("DELETE  FROM feelings where id=?",  id1);
 	        List<Account> account = jdbc.query(
