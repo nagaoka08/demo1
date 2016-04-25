@@ -247,7 +247,18 @@ public class IndexController {
 			int lastDay = calendar.getActualMaximum(Calendar.DATE);
 			model.addAttribute("lastDay", lastDay);
 
-			// operation_history_tblから過去の履歴を取得する.
+			 List<Account> account = jdbc.query(
+		                "SELECT id,username FROM account",
+		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
+		        );
+
+		       	  model.addAttribute("account", account);
+		       	List<Feelings> feelings = jdbc.query(
+		                "SELECT id,niconico FROM feelings ",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+		        );
+		        model.addAttribute("feelings", feelings);
+
 
 
 			return "name";
@@ -287,6 +298,17 @@ public class IndexController {
 			int lastDay = calendar.getActualMaximum(Calendar.DATE);
 			model.addAttribute("lastDay", lastDay);
 
+			 List<Account> account = jdbc.query(
+		                "SELECT id,username FROM account",
+		                (rs, rowNum) -> new Account( rs.getInt("id"),rs.getString("username"))
+		        );
+
+		       	  model.addAttribute("account", account);
+		       	List<Feelings> feelings = jdbc.query(
+		                "SELECT id,niconico FROM feelings ",
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getString("niconico"))
+		        );
+		        model.addAttribute("feelings", feelings);
 
 
 			return "name";
