@@ -52,7 +52,21 @@ function insertRow(id) {
   <input type="submit" value="削除"  /></p>
 </form>
 
-
+<div class="month">
+		<div class="lastmonth">
+			<form method="get" action="/previous">
+				<input type="hidden" name="previous" th:value="${year}+'/'+(${month}-1)" />
+				<input type="submit" th:value="＜" />
+			</form>
+		</div>
+		<div class="currentmonth" th:text="${year}+年+' '+${month}+月"></div>
+		<div class="nextmonth">
+			<form method="get" action="/next">
+				<input type="hidden" name="next" th:value="${year}+'/'+(${month}+1)" />
+				<input type="submit" th:value="＞" />
+			</form>
+		</div>
+	</div>
 
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
