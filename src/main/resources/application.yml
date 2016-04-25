@@ -5,7 +5,7 @@ spring:
         cache: false
     datasource:
         driverClassName: org.postgresql.Driver
-        url:   jdbc:postgresql://@ec2-23-21-167-174.compute-1.amazonaws.com:5432/d90jfae484s31
+        url:   jdbc:postgresql://ec2-23-21-167-174.compute-1.amazonaws.com:5432/d90jfae484s31
         user: kvxhdubezhyppe
         password: c4fshNaNCTcB_x0sMOY8lx5HJx
 #        url: https://git.heroku.com/n-n-nico-calender.git
