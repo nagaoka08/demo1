@@ -7,9 +7,9 @@ public class Feelings {
     public Feelings( int id,int year,int month,int day, String niconico) {
 		super();
 		this.id = id;
-		this.id = year;
-		this.id = month;
-		this.id = day;
+		this.year = year;
+		this.month = month;
+		this.day = day;
 		this.niconico = niconico;
 	}
 
