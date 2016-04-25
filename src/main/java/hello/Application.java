@@ -31,7 +31,7 @@ public class Application implements CommandLineRunner {
 
 
 
-        log.info("Creating tables");
+        //log.info("Creating tables");
         //ユーザテーブル作成
 //          jdbcTemplate.execute("DROP TABLE account IF EXISTS");
 //        jdbcTemplate.execute("CREATE TABLE account(" +
