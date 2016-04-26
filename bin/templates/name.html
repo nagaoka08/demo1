@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-
-
 <body>
 <title>
 ニコニコカレンダー
@@ -13,10 +11,7 @@
 </h1>
 <script>
 function insertRow(id) {
-
 }
-
-
 </script>
 
 <p th:text="${day}"></p>
@@ -58,7 +53,7 @@ function insertRow(id) {
 		</div>
 	</div>
 
-<table border="1" cellspacing="0" cellpadding="4" id="table1" >
+<table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
   	<th> username</th>
     <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}" th:text="${i} "></th>
@@ -66,11 +61,11 @@ function insertRow(id) {
   <tr th:each="account:${account}">
 	   <td  th:text="${account.username}"><p th:text="${account.id}" /></td>
 
-	   <th   th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
+	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
 	   <p th:each="feelings:${feelings}">
 
 	   		<p th:if="${year == feelings.year}">
-					<p th:value="${feelings.year}">
+
 	   			<p th:if="${month == feelings.month}">
 
 	   				<p th:if="${i == feelings.day }">
@@ -81,6 +76,7 @@ function insertRow(id) {
 
 							   		<p  th:text="${feelings.niconico}">
 							   		</p>
+
 						   	</p>
 						 </p>
 					</p>
@@ -110,6 +106,5 @@ function insertRow(id) {
 
 </body>
 </html>
-
 
 
