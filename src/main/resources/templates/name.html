@@ -2,6 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
+<HEAD>
+<!-- 5秒後に移動する場合 -->
+<META http-equiv="refresh" content="5; https://github.com/okubo31/operation-board-like-DQ">
+<TITLE></TITLE>
+</HEAD>
+
 <body>
 <title>
 ニコニコカレンダー
@@ -68,7 +74,7 @@ function insertRow(id) {
 	   <p th:each="feelings:${feelings}">
 
 	   		<p th:if="${year == feelings.year}">
-
+					<p th:value="${feelings.year}">
 	   			<p th:if="${month == feelings.month}">
 
 	   				<p th:if="${i == feelings.day }">
