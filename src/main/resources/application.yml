@@ -1,10 +1,21 @@
 spring:
     thymeleaf:
         cache: false
-    template:
-        cache: false
+    profiles:
+      active: dev
 
-    datasource:
+---
+spring:
+  profiles: dev
+  datasource:
+        driverClassName: org.h2.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: shadow0207
+---
+spring:
+  profiles: heroku
+  datasource:
         driverClassName: org.postgresql.Driver
         url:   jdbc:postgres://kvxhdubezhyppe:c4fshNaNCTcB_x0sMOY8lx5HJx@ec2-23-21-167-174.compute-1.amazonaws.com:5432/d90jfae484s31
         user: kvxhdubezhyppe
