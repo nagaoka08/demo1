@@ -53,6 +53,16 @@ public class IndexController {
 
 
 		public String index(Model model) {
+			int number0=0;
+			int number1=1;
+			int number2=2;
+			int number3=3;
+			int number4=4;
+			model.addAttribute("number0", number0);
+			model.addAttribute("number1", number1);
+			model.addAttribute("number2", number2);
+			model.addAttribute("number3", number3);
+			model.addAttribute("number4", number4);
 			//カレンダー
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
@@ -85,6 +95,16 @@ public class IndexController {
 		public String send(Model model, @RequestParam("name") String name	) {
 
 
+			int number0=0;
+			int number1=1;
+			int number2=2;
+			int number3=3;
+			int number4=4;
+			model.addAttribute("number0", number0);
+			model.addAttribute("number1", number1);
+			model.addAttribute("number2", number2);
+			model.addAttribute("number3", number3);
+			model.addAttribute("number4", number4);
 			  int r =0;
 			  r = (int)(Math.random() * 10000) + 1;
 
@@ -129,6 +149,12 @@ public class IndexController {
 			int number2=2;
 			int number3=3;
 			int number4=4;
+			model.addAttribute("number0", number0);
+			model.addAttribute("number1", number1);
+			model.addAttribute("number2", number2);
+			model.addAttribute("number3", number3);
+			model.addAttribute("number4", number4);
+
 			//カレンダー
 			 model.addAttribute("year", year);
 			  model.addAttribute("month", month);
@@ -139,11 +165,6 @@ public class IndexController {
 
 			  model.addAttribute("day", Day);
 
-			  model.addAttribute("number0", number0);
-			  model.addAttribute("number1", number1);
-			  model.addAttribute("number2", number2);
-			  model.addAttribute("number3", number3);
-			  model.addAttribute("number4", number4);
 
 
 			List<Account> account = jdbc.query(
@@ -182,6 +203,16 @@ public class IndexController {
 		}
 		@RequestMapping("/delete")
 		public String delete(Model model, @RequestParam("id") String id	) {
+			int number0=0;
+			int number1=1;
+			int number2=2;
+			int number3=3;
+			int number4=4;
+			model.addAttribute("number0", number0);
+			model.addAttribute("number1", number1);
+			model.addAttribute("number2", number2);
+			model.addAttribute("number3", number3);
+			model.addAttribute("number4", number4);
 			//カレンダー
 			  model.addAttribute("year", year);
 			  model.addAttribute("month", month);
@@ -226,6 +257,16 @@ public class IndexController {
 
 		@RequestMapping(value = "/previous")
 		public String getPrevious(Model model, @RequestParam("previous") String previous) {
+			int number0=0;
+			int number1=1;
+			int number2=2;
+			int number3=3;
+			int number4=4;
+			model.addAttribute("number0", number0);
+			model.addAttribute("number1", number1);
+			model.addAttribute("number2", number2);
+			model.addAttribute("number3", number3);
+			model.addAttribute("number4", number4);
 			String[] prev = previous.split("/");
 			int prevYear = Integer.parseInt(prev[0]);
 			int prevMonth = Integer.parseInt(prev[1]);
@@ -276,6 +317,16 @@ public class IndexController {
 		}
 		@RequestMapping(value = "/next")
 		public String getNext(Model model, @RequestParam("next") String next) {
+			int number0=0;
+			int number1=1;
+			int number2=2;
+			int number3=3;
+			int number4=4;
+			model.addAttribute("number0", number0);
+			model.addAttribute("number1", number1);
+			model.addAttribute("number2", number2);
+			model.addAttribute("number3", number3);
+			model.addAttribute("number4", number4);
 			String[] nex = next.split("/");
 
 			int nexYear = Integer.parseInt(nex[0]);
