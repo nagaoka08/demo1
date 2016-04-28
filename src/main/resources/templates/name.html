@@ -10,7 +10,14 @@
 ニコニコカレンダー
 </h1>
 <script>
-function insertRow(id) {
+function data(){
+	var a = document.getElementsByClassName("push");
+
+	console.log(a);
+
+	window.open('https://www.google.co.jp', 'mywindow2', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');
+		}
+
 }
 </script>
 
@@ -28,10 +35,10 @@ function insertRow(id) {
 		</option>
 		</select>
 
-		<input type="radio" name="niconico1" value="ニコニコ" checked="checked"/>ニコニコ
-		<input type="radio" name="niconico1" value="イライラ"/>イライラ
-		<input type="radio" name="niconico1" value="悲しい"/>悲しい
-		<input type="radio" name="niconico1" value="眠い"/>眠い
+		<input type="radio" name="niconico1" value="0" checked="checked"/><img src="/resources/niconico.jpg" ></img>ニコニコ
+		<input type="radio" name="niconico1" value="1"/><img src="../niconico/iraira.png" />
+		<input type="radio" name="niconico1" value="2"/><img src="../niconico/kanashii.png" />
+		<input type="radio" name="niconico1" value="3"/><img src="../niconico/nemui.png" />
 
   <input type="submit" value="登録"  /></p>
 </form>
@@ -56,13 +63,13 @@ function insertRow(id) {
 <table border="1" cellspacing="0" cellpadding="4" id="table1">
   <tr id="a">
   	<th> username</th>
-    <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}" th:text="${i} "></th>
+    <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}"  th:text="${i} "></th>
   </tr>
   <tr th:each="account:${account}">
-	   <td  th:text="${account.username}"><p th:text="${account.id}" /></td>
+	   <td  th:text="${account.username}" th:value="${account.id}" class="userid"></td>
 
-	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  >
-	   <p th:each="feelings:${feelings}">
+	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  class="push" onClick="data()" >
+	   <p th:each="feelings:${feelings}" >
 
 	   		<p th:if="${year == feelings.year}">
 
