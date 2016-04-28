@@ -74,7 +74,7 @@ public class IndexController {
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
 		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), year, month
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getInt("niconico")), year, month
 		        );
 		        model.addAttribute("feelings", feelings);
 
@@ -115,7 +115,7 @@ public class IndexController {
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
 		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), year, month
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getInt("niconico")), year, month
 		        );
 		        model.addAttribute("feelings", feelings);
 
@@ -123,8 +123,12 @@ public class IndexController {
 
 		}
 		@RequestMapping("/niconico")
-		public String send1(Model model, @RequestParam("niconico1") String niconico1,@RequestParam("id") String id,@RequestParam("id") int nicoid ){
-			System.out.println(id);
+		public String send1(Model model, @RequestParam("niconico1") int niconico1,@RequestParam("id") String id,@RequestParam("id") int nicoid ){
+			int number0=0;
+			int number1=1;
+			int number2=2;
+			int number3=3;
+			int number4=4;
 			//カレンダー
 			 model.addAttribute("year", year);
 			  model.addAttribute("month", month);
@@ -134,6 +138,13 @@ public class IndexController {
 
 
 			  model.addAttribute("day", Day);
+
+			  model.addAttribute("number0", number0);
+			  model.addAttribute("number1", number1);
+			  model.addAttribute("number2", number2);
+			  model.addAttribute("number3", number3);
+			  model.addAttribute("number4", number4);
+
 
 			List<Account> account = jdbc.query(
 	                "SELECT id,username FROM account",
@@ -162,7 +173,7 @@ public class IndexController {
 
 	       	List<Feelings> feelings = jdbc.query(
 	                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
-	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), year, month
+	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getInt("niconico")), year, month
 	        );
 		        model.addAttribute("feelings", feelings);
 
@@ -202,7 +213,7 @@ public class IndexController {
 
 	       	List<Feelings> feelings = jdbc.query(
 	                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? ",
-	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), year, month
+	                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getInt("niconico")), year, month
 	        );
 	        model.addAttribute("feelings", feelings);
 
@@ -255,7 +266,7 @@ public class IndexController {
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
 		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? order by day",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), prevYear, prevMonth
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getInt("niconico")), prevYear, prevMonth
 		        );
 		        model.addAttribute("feelings", feelings);
 
@@ -306,7 +317,7 @@ public class IndexController {
 		       	  model.addAttribute("account", account);
 		       	List<Feelings> feelings = jdbc.query(
 		                "SELECT id,year,month,day,niconico FROM feelings where year=? and month=? order by day",
-		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getString("niconico")), nexYear, nexMonth
+		                (rs, rowNum) -> new Feelings(rs.getInt("id"),rs.getInt("year"),rs.getInt("month"),rs.getInt("day"),rs.getInt("niconico")), nexYear, nexMonth
 		        );
 		        model.addAttribute("feelings", feelings);
 

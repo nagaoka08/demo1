@@ -11,11 +11,9 @@
 </h1>
 <script>
 function data(){
-	var a = document.getElementsByClassName("push");
-
+	var a = document.getElemenstByClassName("naoki");
 	console.log(a);
-
-	window.open('https://www.google.co.jp', 'mywindow2', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');
+	console.log(a.value);
 		}
 
 }
@@ -35,10 +33,11 @@ function data(){
 		</option>
 		</select>
 
-		<input type="radio" name="niconico1" value="0" checked="checked"/><img src="/resources/niconico.jpg" ></img>ニコニコ
+		<input type="radio" name="niconico1" value="0" checked="checked"/><img src="../niconico/niconico.png" ></img>
 		<input type="radio" name="niconico1" value="1"/><img src="../niconico/iraira.png" />
 		<input type="radio" name="niconico1" value="2"/><img src="../niconico/kanashii.png" />
 		<input type="radio" name="niconico1" value="3"/><img src="../niconico/nemui.png" />
+		<input type="radio" name="niconico1" value="4"/><img src="../niconico/hutuu.png" />
 
   <input type="submit" value="登録"  /></p>
 </form>
@@ -60,7 +59,7 @@ function data(){
 		</div>
 	</div>
 
-<table border="1" cellspacing="0" cellpadding="4" id="table1">
+<table border="1" cellspacing="0" cellpadding="4" id="table1" name="clendar">
   <tr id="a">
   	<th> username</th>
     <th th:each="i : ${#numbers.sequence(1,lastDay )}" th:value="${i}"  th:text="${i} "></th>
@@ -68,7 +67,7 @@ function data(){
   <tr th:each="account:${account}">
 	   <td  th:text="${account.username}" th:value="${account.id}" class="userid"></td>
 
-	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  class="push" onClick="data()" >
+	   <th th:each="i : ${#numbers.sequence(1, lastDay)}" th:value="${i}"  onClick="data()" >
 	   <p th:each="feelings:${feelings}" >
 
 	   		<p th:if="${year == feelings.year}">
@@ -81,15 +80,26 @@ function data(){
 
 			   				<p th:if="${ feelings.id== account.id }">
 
-							   		<p  th:text="${feelings.niconico}">
-							   		</p>
+
+
+							   		<p th:if="${ feelings.niconico== number0 }"><img src="../niconico/niconico.png" ></img></p>
+									<p th:if="${ feelings.niconico== number1}"><img src="../niconico/iraira.png" ></img></p>
+									<p th:if="${ feelings.niconico== number2 }"><img src="../niconico/kanashii.png" ></img></p>
+									<p th:if="${ feelings.niconico== number3 }"><img src="../niconico/nemui.png" ></img></p>
+									<p th:if="${ feelings.niconico== number4 }"><img src="../niconico/hutuu.png" ></img></p>
 
 						   	</p>
+
 						 </p>
+
 					</p>
+
 				</p>
+
 			</p>
+
 		</p>
+
 
 
 		</th>

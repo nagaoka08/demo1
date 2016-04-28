@@ -1,10 +1,10 @@
 package hello;
 
 public class Feelings {
-	private int id,year,month,day;
-    private String niconico;
+	private int id,year,month,day,niconico;
 
-    public Feelings( int id,int year,int month,int day, String niconico) {
+
+    public Feelings( int id,int year,int month,int day, int niconico) {
 		super();
 		this.id = id;
 		this.year = year;
@@ -37,10 +37,10 @@ public class Feelings {
 	public void setDay(int day) {
 		this.day = day;
 	}
-	public String getNiconico() {
+	public int getNiconico() {
 		return niconico;
 	}
-	public void setNiconico(String niconico) {
+	public void setNiconico(int niconico) {
 		this.niconico = niconico;
 	}
 
