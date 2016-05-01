@@ -8,7 +8,7 @@ spring:
 spring:
   profiles: dev
   datasource:
-        driverClassName: org.h2.Driver
+        driverClassName: org.postgresql.Driver
         url: jdbc:postgresql://localhost:5432/postgres
         username: postgres
         password: shadow0207
